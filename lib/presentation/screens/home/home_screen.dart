@@ -1,42 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_search_app/core/theme/app_theme.dart';
-import 'package:flutter_movie_search_app/presentation/screens/splash/splash_screen.dart';
+import 'package:flutter_movie_search_app/core/theme/app_dimensions.dart';
 
-import 'core/theme/app_dimensions.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.darkTheme,
-      home: const SplashScreen(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Movies",
           style: TextStyle(
-            fontWeight: FontWeight.bold
+              fontWeight: FontWeight.bold
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(
-              right: AppDimensions.spacingS
+                right: AppDimensions.spacingS
             ),
             child: IconButton(
               icon: const Icon(Icons.search),
@@ -48,11 +29,11 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Hello, World'),
+            Text('Hello, World'),
           ],
         ),
       ),
