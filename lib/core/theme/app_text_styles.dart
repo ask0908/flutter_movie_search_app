@@ -109,7 +109,7 @@ class AppTextStyles {
   );
 
   // ============ 특수 용도 ============
-  /// 검색 바 플레이스홀더
+  /// 검색 바 placeholder
   static const TextStyle searchPlaceholder = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,

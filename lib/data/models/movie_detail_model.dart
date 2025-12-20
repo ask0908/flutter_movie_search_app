@@ -30,14 +30,14 @@ class MovieDetailModel {
 
   final double popularity;
 
-  // 상세 정보 추가 필드들
-  final int runtime;  // 상영 시간 (분)
-  final String status;  // 상태 (Released, Post Production 등)
-  final int? budget;  // 제작비
-  final int? revenue;  // 수익
+  // 영화 상세 정보
+  final int runtime; // 상영 시간 (분)
+  final String status; // 상태 (Released, Post Production 등)
+  final int? budget; // 제작비
+  final int? revenue; // 수익
 
   @JsonKey(name: 'genres')
-  final List<GenreModel> genres;  // 장르 정보 (id와 name 포함)
+  final List<GenreModel> genres;  // 장르 정보 (id, name 포함)
 
   @JsonKey(name: 'production_companies')
   final List<ProductionCompanyModel>? productionCompanies;

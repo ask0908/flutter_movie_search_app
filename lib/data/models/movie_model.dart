@@ -59,7 +59,6 @@ class MovieModel {
 
   Map<String, dynamic> toJson() => _$MovieModelToJson(this);
 
-  /// Model -> Entity
   MovieEntity toEntity() {
     return MovieEntity(
       id: id,

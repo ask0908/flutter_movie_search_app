@@ -10,7 +10,7 @@ final dioClientProvider = Provider<DioClient>((ref) {
   return DioClient();
 });
 
-/// Movie API 서비스 Provider
+/// MovieApiService Provider
 final movieApiServiceProvider = Provider<MovieApiService>((ref) {
   final dioClient = ref.watch(dioClientProvider);
   return MovieApiService(dioClient.dio);

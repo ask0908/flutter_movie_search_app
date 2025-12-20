@@ -78,7 +78,8 @@ class MovieRepositoryImpl implements MovieRepository {
     } on DioException catch (e) {
       // Dio 관련 에러 - 네트워크, 타임아웃 등
       debugPrint(
-          '[Repository Error] getMovieDetail DioException : ${e.message}');
+          '[Repository Error] getMovieDetail DioException : ${e.message}'
+      );
       if (e.response?.statusCode == 404) {
         throw Exception('영화를 찾을 수 없습니다. id : $movieId)');
       }
