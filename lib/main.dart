@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
 import 'package:flutter_movie_search_app/core/theme/app_theme.dart';
 import 'package:flutter_movie_search_app/presentation/screens/splash/splash_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/theme/app_dimensions.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: ".env");
+
+  if (!ApiConstants.isTokenValid) {
+    debugPrint("tmdb bearer 토큰 로드되지 않음");
+  }
+
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {

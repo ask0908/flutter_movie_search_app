@@ -50,3 +50,9 @@ app.*.map.json
 .idea/firebender/
 *.firebender
 .idea/vcs.xml
+
+# API Keys
+.env
+.env.local
+.env.production
+.env.development
