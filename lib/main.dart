@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
+import 'package:flutter_movie_search_app/core/router/app_router.dart';
 import 'package:flutter_movie_search_app/core/theme/app_theme.dart';
 import 'package:flutter_movie_search_app/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,9 +30,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      title: "영화 검색 앱",
       theme: AppTheme.darkTheme,
-      home: const SplashScreen(),
+      routerConfig: appRouter,
+      debugShowCheckedModeBanner: false, // 디버그 배너 제거
     );
   }
 }
@@ -64,14 +67,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Hello, World'),
-          ],
-        ),
-      ),
+      body: const Placeholder(),
     );
   }
 }
