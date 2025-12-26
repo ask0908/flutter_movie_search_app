@@ -36,7 +36,7 @@ class NowPlayingMovieContainer extends ConsumerWidget {
                   SizedBox(height: 4),
                   TextButton(
                     onPressed: () {
-                      ref.invalidate(topRatedMoviesProvider);
+                      ref.invalidate(nowPlayingProvider);
                     },
                     child: Text('다시 시도'),
                   ),

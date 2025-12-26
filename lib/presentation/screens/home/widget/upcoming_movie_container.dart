@@ -36,7 +36,7 @@ class UpcomingMovieContainer extends ConsumerWidget {
                   SizedBox(height: 4),
                   TextButton(
                     onPressed: () {
-                      ref.invalidate(topRatedMoviesProvider);
+                      ref.invalidate(upcomingMoviesProvider);
                     },
                     child: Text('다시 시도'),
                   ),
