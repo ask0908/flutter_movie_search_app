@@ -16,7 +16,7 @@ class TopRatedMovieContainer extends ConsumerWidget {
     return VStack([
       HStack([
         MovieHomeTitleText(
-          title: "Top Rated",
+          title: "최고 평점 영화",
         ),
         const Spacer(),
         GestureDetector(
@@ -107,7 +107,7 @@ class _TopRatedMovieCard extends StatelessWidget {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40),
+        borderRadius: BorderRadius.circular(20),
       ),
       clipBehavior: Clip.none,
       child: SizedBox(
@@ -126,7 +126,7 @@ class _TopRatedMovieCard extends StatelessWidget {
 
   Widget _buildRankNumber() {
     return Positioned(
-      right: 0,
+      right: 8,
       bottom: 4,
       child: Text(
         rank.toString(),
@@ -176,7 +176,7 @@ class _TopRatedMovieCard extends StatelessWidget {
               },
             )
           : _buildPlaceholderImage(),
-    ).pOnly(left: 8);
+    );
   }
 
   /// 포스터 이미지 placeholder

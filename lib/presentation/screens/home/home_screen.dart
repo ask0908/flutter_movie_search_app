@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_search_app/core/theme/app_dimensions.dart';
 import 'package:flutter_movie_search_app/presentation/screens/home/widget/movie_home_title_text.dart';
+import 'package:flutter_movie_search_app/presentation/screens/home/widget/now_playing_movie_container.dart';
+import 'package:flutter_movie_search_app/presentation/screens/home/widget/popular_movie_container.dart';
 import 'package:flutter_movie_search_app/presentation/screens/home/widget/top_rated_movie_container.dart';
+import 'package:flutter_movie_search_app/presentation/screens/home/widget/upcoming_movie_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -25,23 +28,19 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: const Column(
-        children: [
-          // Top Rated + 전체 보기 텍스트
-          TopRatedMovieContainer(),
-          // // Now Playing
-          // OtherMovieContainer(
-          //   movieType: MovieType.nowplaying,
-          // ),
-          // // Popular
-          // OtherMovieContainer(
-          //   movieType: MovieType.popular,
-          // ),
-          // // Upcoming
-          // OtherMovieContainer(
-          //   movieType: MovieType.upcoming,
-          // ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Top Rated + 전체 보기 텍스트
+            TopRatedMovieContainer(),
+            // 현재 상영 중인 영화
+            NowPlayingMovieContainer(),
+            // 현재 가장 인기 많은 영화
+            PopularMovieContainer(),
+            // 개봉 예정 영화
+            UpcomingMovieContainer(),
+          ],
+        ),
       )
     );
   }
