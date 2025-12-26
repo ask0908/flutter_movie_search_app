@@ -15,7 +15,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   // 현재 선택된 탭 인덱스
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
+  final List<Widget> _screens = const [
     HomeScreen(),
     SearchScreen(),
     FavoritesScreen(),
@@ -24,7 +24,11 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
+      // 탭 변경 후 홈 화면의 스크롤 위치 유실 현상 방지
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: SafeArea(
         child: Theme(
           data: Theme.of(context).copyWith(
