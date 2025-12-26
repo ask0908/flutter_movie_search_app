@@ -2,19 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
 import 'package:flutter_movie_search_app/domain/entity/movie_entity.dart';
+import 'package:flutter_movie_search_app/providers/favorite_providers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MovieCard extends StatefulWidget {
+class MovieCard extends ConsumerWidget {
+
   final MovieEntity movie;
 
   const MovieCard({super.key, required this.movie});
 
   @override
-  State<MovieCard> createState() => _MovieCardState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteNotifier = ref.watch(favoriteProvider.notifier);
+    final isFavorite = ref.watch(favoriteProvider).contains(movie.id);
 
-class _MovieCardState extends State<MovieCard> {
-  @override
-  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -30,7 +31,10 @@ class _MovieCardState extends State<MovieCard> {
               clipBehavior: Clip.none,
               children: [
                 _buildPosterImage(),
-                _buildFavoriteButton(),
+                _buildFavoriteButton(
+                  isFavorite,
+                  favoriteNotifier,
+                ),
               ],
             ),
           ),
@@ -42,11 +46,11 @@ class _MovieCardState extends State<MovieCard> {
 
   Widget _buildPosterImage() {
     final posterUrl =
-        widget.movie.getPosterUrl(ApiConstants.imageBaseUrl, ApiConstants.posterSize);
+        movie.getPosterUrl(ApiConstants.imageBaseUrl, ApiConstants.posterSize);
 
     return GestureDetector(
       onTap: () {
-        debugPrint("영화 ${widget.movie.id} 클릭 -> 상세 화면 이동");
+        debugPrint("영화 ${movie.id} 클릭 -> 상세 화면 이동");
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
@@ -86,18 +90,14 @@ class _MovieCardState extends State<MovieCard> {
     );
   }
 
-  Widget _buildFavoriteButton() {
-    bool isFavorite = true;
-
+  Widget _buildFavoriteButton(bool isFavorite, FavoriteNotifier notifier) {
     return Positioned(
       right: 8,
       top: 8,
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            debugPrint("영화 ${widget.movie.id} 좋아요 토글");
-            // isFavorite = !isFavorite;
-          });
+          notifier.toggleFavorite(movie.id);
+          debugPrint("좋아요 표시 : ${movie.id}");
         },
         child: Container(
           padding: EdgeInsets.all(6),

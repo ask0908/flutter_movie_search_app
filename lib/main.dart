@@ -3,7 +3,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
 import 'package:flutter_movie_search_app/core/router/app_router.dart';
 import 'package:flutter_movie_search_app/core/theme/app_theme.dart';
+import 'package:flutter_movie_search_app/providers/favorite_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/theme/app_dimensions.dart';
 
@@ -11,6 +13,7 @@ Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
+  final sharedPreferences = await SharedPreferences.getInstance();
   await dotenv.load(fileName: ".env");
 
   if (!ApiConstants.isTokenValid) {
@@ -18,7 +21,10 @@ Future<void> main() async {
   }
 
   runApp(
-    const ProviderScope(
+    ProviderScope(
+      overrides: [
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
       child: MyApp(),
     )
   );
