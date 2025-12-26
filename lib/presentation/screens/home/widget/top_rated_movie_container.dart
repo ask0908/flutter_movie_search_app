@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
 import 'package:flutter_movie_search_app/domain/entity/movie_entity.dart';
@@ -166,12 +167,14 @@ class _TopRatedMovieCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: posterUrl != null
-          ? Image.network(
-              posterUrl,
+          ? CachedNetworkImage(
+              imageUrl: posterUrl,
               width: 80,
               height: 120,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
+              errorWidget: (context, url, error) {
+                debugPrint("top rated 이미지 로딩 실패 : $url");
+                debugPrint("top rated api 에러 : $error");
                 return _buildPlaceholderImage();
               },
             )

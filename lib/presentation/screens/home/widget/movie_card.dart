@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
 import 'package:flutter_movie_search_app/domain/entity/movie_entity.dart';
@@ -50,12 +51,20 @@ class _MovieCardState extends State<MovieCard> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: posterUrl != null
-            ? Image.network(
-                posterUrl,
+            ? CachedNetworkImage(
+                imageUrl: posterUrl,
                 width: double.infinity,
                 height: double.infinity,
+                maxWidthDiskCache: 400,
+                maxHeightDiskCache: 600,
+                placeholder: (context, url) => Container(
+                  color: Colors.black,
+                  child: Center(child: CircularProgressIndicator()),
+                ),
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
+                errorWidget: (context, url, error) {
+                  debugPrint("이미지 로딩 실패 : $url");
+                  debugPrint("에러 : $error");
                   return _buildPlaceholder();
                 },
               )
