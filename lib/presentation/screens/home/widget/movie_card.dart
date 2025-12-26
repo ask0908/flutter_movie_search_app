@@ -42,7 +42,7 @@ class _MovieCardState extends State<MovieCard> {
 
   Widget _buildPosterImage() {
     final posterUrl =
-        widget.movie.getPosterUrl(ApiConstants.imageBaseUrl, 'w500');
+        widget.movie.getPosterUrl(ApiConstants.imageBaseUrl, ApiConstants.posterSize);
 
     return GestureDetector(
       onTap: () {

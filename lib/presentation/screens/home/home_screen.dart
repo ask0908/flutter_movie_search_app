@@ -35,10 +35,13 @@ class HomeScreen extends ConsumerWidget {
             TopRatedMovieContainer(),
             // 현재 상영 중인 영화
             NowPlayingMovieContainer(),
+            SizedBox(height: 16),
             // 현재 가장 인기 많은 영화
             PopularMovieContainer(),
+            SizedBox(height: 16),
             // 개봉 예정 영화
             UpcomingMovieContainer(),
+            SizedBox(height: 16),
           ],
         ),
       )

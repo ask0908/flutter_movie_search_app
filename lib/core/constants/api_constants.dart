@@ -14,7 +14,7 @@ class ApiConstants {
 
   // 이미지 base url
   static const String imageBaseUrl = 'https://image.tmdb.org/t/p';
-  static const String posterSize = 'w500';
+  static const String posterSize = 'w200';
   static const String backdropSize = 'w780';
 
   // 엔드 포인트
