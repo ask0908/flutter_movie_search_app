@@ -31,7 +31,6 @@ class TopRatedMovieContainer extends ConsumerWidget {
           ),
         ),
       ]).pOnly(left: 16, right: 16, top: 16),
-      // 영화 포스터, 순위, 평점, 장르 chip 1개, 영화 설명 3줄 + 말줄임표를 아이템으로 갖는 가로 리스트
       topRatedMovies.when(
         loading: () => SizedBox(
           height: 200,
