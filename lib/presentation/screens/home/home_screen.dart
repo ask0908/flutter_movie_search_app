@@ -15,18 +15,18 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const MovieHomeTitleText(title: "Movies"),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: AppDimensions.spacingS),
-            child: IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                debugPrint("검색 클릭 -> 검색 화면 이동해야 함");
-              },
-              tooltip: "영화 검색",
-            ),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(right: AppDimensions.spacingS),
+        //     child: IconButton(
+        //       icon: const Icon(Icons.search),
+        //       onPressed: () {
+        //         debugPrint("검색 클릭 -> 검색 화면 이동해야 함");
+        //       },
+        //       tooltip: "영화 검색",
+        //     ),
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         child: Column(

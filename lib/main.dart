@@ -3,7 +3,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_movie_search_app/core/constants/api_constants.dart';
 import 'package:flutter_movie_search_app/core/router/app_router.dart';
 import 'package:flutter_movie_search_app/core/theme/app_theme.dart';
-import 'package:flutter_movie_search_app/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/theme/app_dimensions.dart';

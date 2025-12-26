@@ -10,6 +10,9 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
+      // 바텀 네비게이션 바의 탭 클릭 시 ripple 제거
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
 
       // ============ 색깔 스킴 ============
       colorScheme: const ColorScheme.dark(

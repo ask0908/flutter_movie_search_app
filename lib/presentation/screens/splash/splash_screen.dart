@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     if (!mounted) return;
 
-    context.go("/home");
+    context.go("/main");
   }
 
   @override
