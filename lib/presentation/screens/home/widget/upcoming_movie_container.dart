@@ -26,22 +26,20 @@ class UpcomingMovieContainer extends ConsumerWidget {
         error: (e, stack) => SizedBox(
           height: 200,
           child: Center(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.error_outline, size: 48, color: Colors.red),
-                  SizedBox(height: 8),
-                  Text('영화 데이터를 불러올 수 없습니다'),
-                  SizedBox(height: 4),
-                  TextButton(
-                    onPressed: () {
-                      ref.invalidate(upcomingMoviesProvider);
-                    },
-                    child: Text('다시 시도'),
-                  ),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.error_outline, size: 48, color: Colors.red),
+                SizedBox(height: 8),
+                Text('영화 데이터를 불러올 수 없습니다'),
+                SizedBox(height: 4),
+                TextButton(
+                  onPressed: () {
+                    ref.invalidate(upcomingMoviesProvider);
+                  },
+                  child: Text('다시 시도'),
+                ),
+              ],
             ),
           ),
         ),
