@@ -50,20 +50,22 @@ class FavoriteMovieListItem extends ConsumerWidget {
             ? CachedNetworkImage(
           imageUrl: posterUrl,
           fit: BoxFit.cover,
-          placeholder: (context, url) => Container(
-            color: Colors.grey[300],
-            child: const Center(
-              child: CircularProgressIndicator(),
-            ),
-          ),
-          errorWidget: (context, url, error) => Container(
-            color: Colors.grey[300],
-            child: Icon(
-              Icons.movie,
-              size: 40,
-              color: Colors.grey[600],
-            ),
-          ),
+          placeholder: (context, url) =>
+              Container(
+                color: Colors.grey[300],
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+          errorWidget: (context, url, error) =>
+              Container(
+                color: Colors.grey[300],
+                child: Icon(
+                  Icons.movie,
+                  size: 40,
+                  color: Colors.grey[600],
+                ),
+              ),
         )
             : Container(
           color: Colors.grey[300],
@@ -138,10 +140,10 @@ class FavoriteMovieListItem extends ConsumerWidget {
         size: 28,
       ),
       onPressed: () {
-        ref.read(favoriteProvider.notifier).toggleFavorite(movie.id);
-        debugPrint("좋아요 제거 완료 : ${movie.id}");
+        // ID만 전달하는 대신 movie 객체 전체 전달
+        ref.read(favoriteProvider.notifier).toggleFavorite(movie);
+        debugPrint("좋아요 토글 완료 : ${movie.id}");
       },
     );
   }
-
 }

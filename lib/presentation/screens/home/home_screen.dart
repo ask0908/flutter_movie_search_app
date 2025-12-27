@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_search_app/core/theme/app_dimensions.dart';
 import 'package:flutter_movie_search_app/presentation/screens/home/widget/movie_home_title_text.dart';
 import 'package:flutter_movie_search_app/presentation/screens/home/widget/now_playing_movie_container.dart';
 import 'package:flutter_movie_search_app/presentation/screens/home/widget/popular_movie_container.dart';

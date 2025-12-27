@@ -1,4 +1,5 @@
 import 'package:flutter_movie_search_app/data/data_sources/local/favorite_local_data_source.dart';
+import 'package:flutter_movie_search_app/domain/entity/movie_entity.dart';
 import 'package:flutter_movie_search_app/domain/repository/favorite_repository.dart';
 
 class FavoriteRepositoryImpl implements FavoriteRepository {
@@ -10,8 +11,17 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
   List<int> getFavoriteMovieIds() => _localDataSource.getFavoriteMovieIds();
 
   @override
-  bool isFavorite(int movieId) => _localDataSource.isFavorite(movieId);
+  List<MovieEntity> getFavoriteMovies() => _localDataSource.getFavoriteMovies();
 
   @override
-  Future<bool> toggleFavorite(int movieId) async => await _localDataSource.toggleFavorite(movieId);
+  Future<bool> addFavorite(MovieEntity movie) async =>
+      await _localDataSource.addFavorite(movie);
+
+  @override
+  Future<bool> removeFavorite(int movieId) async =>
+      await _localDataSource.removeFavorite(movieId);
+
+  @override
+  Future<bool> toggleFavorite(MovieEntity movie) async =>
+      await _localDataSource.toggleFavorite(movie);
 }

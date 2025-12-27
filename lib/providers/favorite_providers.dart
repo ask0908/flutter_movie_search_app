@@ -1,3 +1,4 @@
+import 'package:flutter_movie_search_app/domain/entity/movie_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_movie_search_app/data/data_sources/local/favorite_local_data_source.dart';
@@ -31,16 +32,19 @@ class FavoriteNotifier extends Notifier<Set<int>> {
   }
 
   /// 좋아요 토글
-  Future<void> toggleFavorite(int movieId) async {
+  Future<void> toggleFavorite(MovieEntity movie) async {
     final repository = ref.read(favoriteRepositoryProvider);
-    final success = await repository.toggleFavorite(movieId);
+    final success = await repository.toggleFavorite(movie);
 
     if (success) {
-      if (state.contains(movieId)) {
-        state = {...state}..remove(movieId);
+      if (state.contains(movie.id)) {
+        state = {...state}..remove(movie.id);
       } else {
-        state = {...state, movieId};
+        state = {...state, movie.id};
       }
+      
+      // 좋아요 영화 목록도 같이 업데이트
+      ref.read(favoriteMoviesProvider.notifier).refresh();
     }
   }
 
@@ -50,3 +54,22 @@ class FavoriteNotifier extends Notifier<Set<int>> {
 
 final favoriteProvider =
     NotifierProvider<FavoriteNotifier, Set<int>>(() => FavoriteNotifier());
+
+class FavoriteMoviesNotifier extends Notifier<List<MovieEntity>> {
+  @override
+  List<MovieEntity> build() {
+    final repository = ref.watch(favoriteRepositoryProvider);
+    return repository.getFavoriteMovies();
+  }
+
+  void refresh() {
+    final repository = ref.read(favoriteRepositoryProvider);
+    state = repository.getFavoriteMovies();
+  }
+}
+
+/// 좋아요한 영화 전체 정보 Provider
+final favoriteMoviesProvider =
+    NotifierProvider<FavoriteMoviesNotifier, List<MovieEntity>>(
+  () => FavoriteMoviesNotifier(),
+);

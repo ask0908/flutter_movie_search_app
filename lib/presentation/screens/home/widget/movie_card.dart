@@ -96,7 +96,7 @@ class MovieCard extends ConsumerWidget {
       top: 8,
       child: GestureDetector(
         onTap: () {
-          notifier.toggleFavorite(movie.id);
+          notifier.toggleFavorite(movie);
           debugPrint("좋아요 표시 : ${movie.id}");
         },
         child: Container(

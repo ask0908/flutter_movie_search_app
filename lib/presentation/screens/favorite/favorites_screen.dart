@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_search_app/presentation/screens/favorite/favorite_movie_list_item.dart';
 import 'package:flutter_movie_search_app/presentation/screens/home/widget/movie_home_title_text.dart';
 import 'package:flutter_movie_search_app/providers/favorite_providers.dart';
-import 'package:flutter_movie_search_app/providers/movie_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -11,36 +10,23 @@ class FavoritesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteIds = ref.watch(favoriteProvider);
-    final movies = ref.watch(popularMoviesProvider);
+    final favoriteMovies = ref.watch(favoriteMoviesProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: const MovieHomeTitleText(title: "Liked Movies"),
       ),
-      body: favoriteIds.isEmpty
+      body: favoriteMovies.isEmpty
           ? _buildEmptyFavoriteState()
-          : movies.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error, stack) =>
-                  Center(child: Text('좋아요 영화 조회 오류 : $error')),
-              data: (movies) {
-                final favoriteMovies = movies
-                    .where((movie) => favoriteIds.contains(movie.id))
-                    .toList();
-
-                return ListView.separated(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 0,
-                    vertical: 8,
-                  ),
-                  itemCount: favoriteMovies.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 12),
-                  itemBuilder: (context, index) =>
-                      FavoriteMovieListItem(movie: favoriteMovies[index]),
-                );
-              },
+          : ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 0,
+                vertical: 8,
+              ),
+              itemCount: favoriteMovies.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+              itemBuilder: (context, index) =>
+                  FavoriteMovieListItem(movie: favoriteMovies[index]),
             ),
     );
   }
@@ -48,7 +34,7 @@ class FavoritesScreen extends ConsumerWidget {
   Widget _buildEmptyFavoriteState() {
     return Center(
       child: VStack(
-        alignment: MainAxisAlignment.center,
+        crossAlignment: CrossAxisAlignment.center,
         [
           Icon(
             Icons.favorite_outline,

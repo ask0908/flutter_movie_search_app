@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie_search_app/presentation/screens/main/main_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_movie_search_app/presentation/screens/splash/splash_screen.dart';
-import 'package:flutter_movie_search_app/presentation/screens/home/home_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: "/",
