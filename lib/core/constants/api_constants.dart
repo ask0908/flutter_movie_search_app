@@ -27,7 +27,7 @@ class ApiConstants {
 
   // 기본 파라미터
   static const String language = 'ko-KR';
-  static const bool includeAdult = false;
+  static const bool includeAdult = true;
 
   // Bearer Token 제대로 로드됐는지
   static bool get isTokenValid => bearerToken.isNotEmpty;

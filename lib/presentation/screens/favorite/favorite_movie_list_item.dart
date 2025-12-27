@@ -116,7 +116,7 @@ class FavoriteMovieListItem extends ConsumerWidget {
         // 최대 3줄 설명
         Expanded(
           child: Text(
-            movie.overview,
+            movie.overview ?? "",
             style: TextStyle(
               fontSize: 13,
               color: Colors.grey[600],

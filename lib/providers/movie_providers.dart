@@ -51,3 +51,10 @@ final movieDetailProvider = FutureProvider.family<MovieEntity, int>((ref, movieI
   final repository = ref.watch(movieRepositoryProvider);
   return await repository.getMovieDetail(movieId);
 });
+
+/// 영화 검색 Provider
+final movieSearchProvider = FutureProvider.family<List<MovieEntity>, String>((ref, query) async {
+  if (query.isEmpty) return [];
+  final repository = ref.watch(movieRepositoryProvider);
+  return await repository.searchMovies(query: query);
+});

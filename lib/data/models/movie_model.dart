@@ -9,9 +9,9 @@ class MovieModel {
   final String title;
 
   @JsonKey(name: 'original_title')
-  final String originalTitle;
+  final String? originalTitle;
 
-  final String overview;
+  final String? overview;
 
   @JsonKey(name: 'poster_path')
   final String? posterPath;
@@ -20,38 +20,38 @@ class MovieModel {
   final String? backdropPath;
 
   @JsonKey(name: 'release_date')
-  final String releaseDate;
+  final String? releaseDate;
 
   @JsonKey(name: 'vote_average')
-  final double voteAverage;
+  final double? voteAverage;
 
   @JsonKey(name: 'vote_count')
-  final int voteCount;
+  final int? voteCount;
 
-  final double popularity;
+  final double? popularity;
 
   @JsonKey(name: 'genre_ids')
-  final List<int> genreIds;
+  final List<int>? genreIds;
 
-  final bool adult;
+  final bool? adult;
 
   @JsonKey(name: 'original_language')
-  final String originalLanguage;
+  final String? originalLanguage;
 
   const MovieModel({
     required this.id,
     required this.title,
-    required this.originalTitle,
-    required this.overview,
+    this.originalTitle,
+    this.overview,
     this.posterPath,
     this.backdropPath,
-    required this.releaseDate,
-    required this.voteAverage,
-    required this.voteCount,
-    required this.popularity,
-    required this.genreIds,
-    required this.adult,
-    required this.originalLanguage,
+    this.releaseDate,
+    this.voteAverage,
+    this.voteCount,
+    this.popularity,
+    this.genreIds,
+    this.adult,
+    this.originalLanguage,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) =>
@@ -63,15 +63,15 @@ class MovieModel {
     return MovieEntity(
       id: id,
       title: title,
-      originalTitle: originalTitle,
-      overview: overview,
+      originalTitle: originalTitle ?? title,
+      overview: overview ?? "",
       posterPath: posterPath,
       backdropPath: backdropPath,
-      releaseDate: releaseDate,
-      voteAverage: voteAverage,
-      voteCount: voteCount,
-      popularity: popularity,
-      genreIds: genreIds,
+      releaseDate: releaseDate ?? "",
+      voteAverage: voteAverage ?? 0.0,
+      voteCount: voteCount ?? 0,
+      popularity: popularity ?? 0.0,
+      genreIds: genreIds ?? [],
     );
   }
 }

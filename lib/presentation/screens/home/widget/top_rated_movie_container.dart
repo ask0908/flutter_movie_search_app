@@ -245,7 +245,7 @@ class _TopRatedMovieCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 20),
       child: Text(
-        movie.overview,
+        movie.overview ?? "",
         maxLines: 3,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
