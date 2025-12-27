@@ -209,7 +209,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           );
         }
 
-        // Sliver를 사용한 단일 스크롤 영역
         return CustomScrollView(
           slivers: [
             // 검색 결과 헤더
